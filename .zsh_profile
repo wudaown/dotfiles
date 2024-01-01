@@ -1,0 +1,64 @@
+export PATH=/home/wudaown/bin:$PATH
+export PATH=/home/wudaown/.cargo/bin:$PATH
+export PATH=/home/wudaown/go/bin:$PATH
+export EDITOR=vim
+export TERM=xterm-256color
+
+
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
+
+# ---------------- 拼音补全 --------------- #
+# ---------------- pinyin-completion ------ #
+# source /usr/share/pinyin-completion/shell/pinyin-comp.zsh 
+# --------------- END --------------------- #
+### chsdir start ###
+#. $HOME/bin/chs_completion
+#complete -o filenames -F _filedir_xspec file
+#export CHSDIR="{'n':'l'}"
+#
+# ------------- function kill all --------- #
+#function killa(){
+#    read -e -p "Enter keyword of procss: " pskill
+#    kill -9 $(pgrep $pskill | sed '1d' | awk '{print $2}')
+#    }
+# ----------- END function kill all -------#
+
+# -------------- FASD ------------------------#
+{ if [ "$ZSH_VERSION" ] && compctl; then # zsh
+    eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install \
+        zsh-wcomp zsh-wcomp-install)"
+  elif [ "$BASH_VERSION" ] && complete; then # bash
+    eval "$(fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install)"
+  else  posix shell
+    eval "$(fasd --init posix-alias posix-hook)"
+  fi
+} >> "/dev/null" 2>&1
+
+
+# ex - archive extractor
+# usage: ex <file>
+ex() {
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+
+archey3

@@ -1,0 +1,6 @@
+.tmux .tmux
+.tmux.conf .tmux.conf
+starship.toml .config/starship.toml
+.zshrc .zshrc
+.zsh_profile .zsh_profile
+.zsh_alias .zsh_alias
