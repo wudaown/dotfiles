@@ -52,9 +52,9 @@ if [[ "$HOST" = "wudaown-3430" ]]; then
 fi
 
 # Attach tmux on SSH session
-if [ -z "$TMUX" ] && [[ "$SSH_CONNECTION" != "" ]]; then
-    tmux attach -t default || tmux new -s default
-fi
+# if [ -z "$TMUX" ] && [[ "$SSH_CONNECTION" != "" ]]; then
+#     tmux attach -t default || tmux new -s default
+# fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
